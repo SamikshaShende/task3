@@ -1,20 +1,31 @@
+
 function valid_complete_form(){
+    
+
     var email = document.getElementById('email').value;
-    var pass = document.getElementById('pass').value;
+    var pass = document.getElementById('password').value;
 
-    document.getElementById('username').classList.add('d-none');
+    document.getElementById('username_warning').classList.add('d-none');
+    document.getElementById('pass_warning').classList.add('d-none');
 
-    alert(email);
-
+    let final_result = true;
 
     if(email && pass){
-
+        //email validation
         if(!email.match(/\S+@\S+\.\S+/)){
-            document.getElementById('username').classList.remove('d-none');
-            return false;
+            document.getElementById('username_warning').classList.remove('d-none');
+            final_result = false;
         }
 
+        if(!pass.match(/^[A-Z0-9@]/)){
+            document.getElementById('pass_warning').classList.remove('d-none');
+            final_result = false;
+        }
+
+    }else{
+        alert("please enter email and password")
+        final_result = false;
     }
 
-    return true;
+    return final_result;
 }
